@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 DEFAULT_APPS = [
     "users",
+    'base'
 ]
 
 ADDON_APPS = [
