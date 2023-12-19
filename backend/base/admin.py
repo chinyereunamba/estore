@@ -7,11 +7,19 @@ from .models import *
 
 class ProductAdmin(admin.ModelAdmin):
     list_display = ["name", "quantity", "brand", "category"]
-    list_filter = ["brand", 'category']
-    search_fields = ['name']
+    list_filter = ["brand", "category"]
+    search_fields = ["name"]
     readonly_fields = ["product_id"]
+
+
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ["user", "product", "quantity", "order_number", "date_ordered"]
+    list_filter = ["user"]
+    search_fields = ["order_number"]
+    readonly_fields = ['order_number']
 
 
 admin.site.register(Category)
 admin.site.register(Brand)
 admin.site.register(Product, ProductAdmin)
+admin.site.register(Order, OrderAdmin)

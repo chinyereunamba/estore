@@ -32,3 +32,8 @@ class BrandView(ModelViewSet):
 
 brand = BrandView.as_view({"get": "list"})
 brand = BrandView.as_view({"post": "create"})
+
+
+class OrderView(ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
