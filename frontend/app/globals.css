@@ -33,34 +33,30 @@ h1 {
 }
 
 h2 {
-    font-size: 3.158rem;
+    font-size: 3.1rem;
 }
 
 h3 {
-    font-size: 2.36rem;
+    font-size: 2.1rem;
 }
 
 h4 {
-    font-size: 1.77rem;
+    font-size: 1.5rem;
 }
 
 h5 {
-    font-size: 1.333rem;
+    font-size: 1.15rem;
 }
 
 p,
 li,
 a {
-    font-size: 1rem;
+    font-size: 1.05rem;
     font-weight: 400;
 }
 
 small {
     font-size: 0.75rem;
-}
-
-li{
-    padding: .5rem 1rem;
 }
 
 button {

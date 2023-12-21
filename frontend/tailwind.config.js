@@ -15,11 +15,11 @@ module.exports = {
     },
     fontSize: {
       sm: '0.750rem',
-      base: '1rem',
-      xl: '1.333rem',
-      '2xl': '1.777rem',
-      '3xl': '2.369rem',
-      '4xl': '3.158rem',
+      base: '1.05rem',
+      xl: '1.15rem',
+      '2xl': '1.5rem',
+      '3xl': '2.1rem',
+      '4xl': '3.1rem',
       '5xl': '3.9rem',
     },
     fontWeight: {

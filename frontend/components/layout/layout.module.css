@@ -1,4 +1,4 @@
-h4.logo {
+.logo {
     font-family: 'Dancing Script', cursive;
     font-weight: 700;
 }
@@ -36,6 +36,20 @@ h4.logo {
     color: var(--primary);
 }
 
-.nav{
+.nav {
     position: sticky;
+}
+
+.nav li {
+    padding: .5rem 1rem;
+
+}
+
+.footer h5{
+    text-transform: uppercase;
+    font-size: 1.05rem;
+}
+
+.footer_sec_1 li{
+    padding: 0.5rem 0;
 }

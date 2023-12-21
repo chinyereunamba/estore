@@ -7,9 +7,9 @@ export default function Nav() {
   return (
     <nav className={`${style.nav} flex justify-between items-center p-5`}>
       <div className="flex gap-7 items-center">
-        <div className="text-xl">
-          <h4 className={`${style.logo}`}>DigitalHabour</h4>
-        </div>
+        <Link href={'/'}>
+          <h3 className={`${style.logo}`}>Digital Habour</h3>
+        </Link>
         <div className={`flex ${style.search}`}>
           <input type="text" placeholder="Search products..." />
           <FaMagnifyingGlass className="text-xl text-primary" />

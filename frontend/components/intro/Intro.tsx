@@ -10,7 +10,8 @@ export default function Intro() {
         </h1>
         <button>Discover more</button>
       </div>
-      <div className={`${style.intro_sec_2}`}>
+      <div className={`${style.intro_sec_2} px-5`}>
+        <img src="img.png" alt="" />
       </div>
     </section>
   );
