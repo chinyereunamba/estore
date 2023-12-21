@@ -1,0 +1,30 @@
+.search{
+    position: relative;
+    width: 350px;
+}
+
+.search input{
+    padding: .5rem 1rem;
+}
+
+.search input{
+    background: var(--background);
+    width: 100%;
+    padding-left: 2.5rem;
+    border-bottom: 1px solid;
+    border-radius: 0;
+    outline: none;
+}
+
+.search input:focus{
+    border-bottom: 2px solid;
+    transform-origin: center;
+    transition: 0.4s;
+}
+
+.search svg{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+}
