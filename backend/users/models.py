@@ -37,6 +37,7 @@ class MyAccountManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
+    username = None
     email = models.EmailField(
         _("Email Address"), unique=True, max_length=80, blank=False, null=False
     )
@@ -62,10 +63,8 @@ class User(AbstractBaseUser, PermissionsMixin):
     REQUIRED_FIELDS = []
 
     class Meta:
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
-        
-
+        verbose_name = "User"
+        verbose_name_plural = "Users"
 
     def __str__(self) -> str:
         return self.email
