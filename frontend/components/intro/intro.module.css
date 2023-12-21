@@ -1,0 +1,30 @@
+.intro{
+    height: calc(100vh - 85px);
+}
+
+.intro >div{
+    width: 50%;
+    height: 100%;
+}
+
+.intro .intro_sec_1{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.5rem;
+    padding: 20px 50px;
+}
+
+.intro_sec_1 h1{
+    line-height: 1.5;
+}
+
+.intro_sec_1 button{
+    background: var(--primary);
+    color: var(--background);
+}
+
+.intro_sec_2{
+    /* background: ; */
+}

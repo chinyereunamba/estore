@@ -20,11 +20,7 @@ module.exports = {
       '2xl': '1.777rem',
       '3xl': '2.369rem',
       '4xl': '3.158rem',
-      '5xl': '4.210rem',
-    },
-    fontFamily: {
-      heading: 'Roboto',
-      body: '',
+      '5xl': '3.9rem',
     },
     fontWeight: {
       normal: '400',
@@ -37,6 +33,7 @@ module.exports = {
       'secondary': '#d786ee',
       'accent': '#e754c0',
     },
+
 
   },
   plugins: [],

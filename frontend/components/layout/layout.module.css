@@ -1,30 +1,41 @@
-.search{
-    position: relative;
-    width: 350px;
+h4.logo {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
 }
 
-.search input{
+.search {
+    position: relative;
+    width: 400px;
+}
+
+.search input {
     padding: .5rem 1rem;
 }
 
-.search input{
+.search input {
     background: var(--background);
     width: 100%;
     padding-left: 2.5rem;
-    border-bottom: 1px solid;
-    border-radius: 0;
+    border: 1px solid #aaa;
     outline: none;
 }
 
-.search input:focus{
-    border-bottom: 2px solid;
+.search input:focus {
     transform-origin: center;
     transition: 0.4s;
 }
 
-.search svg{
+.search svg {
     position: absolute;
     top: 50%;
-    left: 5px;
+    left: 10px;
     transform: translateY(-50%);
+}
+
+.nav li a:hover {
+    color: var(--primary);
+}
+
+.nav{
+    position: sticky;
 }

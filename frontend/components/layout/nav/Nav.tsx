@@ -5,14 +5,16 @@ import style from "../layout.module.css";
 
 export default function Nav() {
   return (
-    <nav className="flex justify-between items-center p-5">
+    <nav className={`${style.nav} flex justify-between items-center p-5`}>
       <div className="flex gap-7 items-center">
-        <div className="text-xl">Logo</div>
+        <div className="text-xl">
+          <h4 className={`${style.logo}`}>DigitalHabour</h4>
+        </div>
         <div className={`flex ${style.search}`}>
           <input type="text" placeholder="Search products..." />
-          <FaMagnifyingGlass className="text-xl" />
+          <FaMagnifyingGlass className="text-xl text-primary" />
         </div>
-        <ul className="flex gap-2">
+        <ul className="flex">
           <li>
             <Link href="/">Shop</Link>
           </li>
@@ -27,16 +29,22 @@ export default function Nav() {
       <div>
         <ul className="flex gap-4">
           <li>
-            <Link href={"/"} className="flex gap-3">
-              <FaBagShopping className="text-xl" />
+            <Link href={"/"} className="flex gap-5">
+              <span className="relative">
+                <FaBagShopping className="text-xl" />
+                <span className="absolute -top-4 -right-3 text-sm w-5 h-5 flex justify-center items-center text-background bg-accent rounded-full">5</span>
+              </span>
               Cart
             </Link>
           </li>
-          <li className="border-2 border-text text-text text-semibold">
+          {/* <li className="border-2 cursor-pointer border-text text-text text-semibold">
             <Link href="/login">Login</Link>
           </li>
-          <li className="bg-accent text-background">
-            <Link href="/signup">Sign up</Link>
+          <li className="cursor-pointer bg-accent text-background">
+            <Link href="/signup">Sign up</Link> 
+          </li>*/}
+          <li className="py-2 px-2">
+            <Link href="/">My Account</Link>
           </li>
         </ul>
       </div>

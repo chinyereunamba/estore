@@ -10,12 +10,68 @@
     --accent: #e754c0;
 }
 
-button,
-li {
-    padding: .5rem 1.2rem;
+* {
+    box-sizing: border-box;
 }
 
-button, li, input{
-    border-radius: 20px;
+body{
+    background: var(--background);
+    font-family: 'Lato', sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+h1 {
+    font-size: 3.9rem;
+}
+
+h2 {
+    font-size: 3.158rem;
+}
+
+h3 {
+    font-size: 2.36rem;
+}
+
+h4 {
+    font-size: 1.77rem;
+}
+
+h5 {
+    font-size: 1.333rem;
+}
+
+p,
+li,
+a {
+    font-size: 1rem;
+    font-weight: 400;
+}
+
+small {
+    font-size: 0.75rem;
+}
+
+li{
+    padding: .5rem 1rem;
+}
+
+button {
+    padding: .7rem 1.2rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+button,
+li,
+input {
+    border-radius: 25px;
 
 }
