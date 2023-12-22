@@ -8,7 +8,7 @@ export default function Intro() {
         <h1>
           Discover the latest in technology and lifestyle.
         </h1>
-        <button>Discover more</button>
+        <button className='hover:shadow-xl bg-primary hover:bg-opacity-50'>Discover more</button>
       </div>
       <div className={`${style.intro_sec_2} px-5`}>
         <img src="img.png" alt="" />

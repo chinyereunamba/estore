@@ -1,9 +1,14 @@
+"use client";
+
 import React from "react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { FaMagnifyingGlass, FaBagShopping } from "react-icons/fa6";
 import style from "../layout.module.css";
 
 export default function Nav() {
+  const { data: session } = useSession();
+
   return (
     <nav className={`${style.nav} flex justify-between items-center p-5`}>
       <div className="flex gap-7 items-center">
@@ -39,15 +44,20 @@ export default function Nav() {
               Cart
             </Link>
           </li>
-          <li className='border-2 border-text text-semibold hover:bg-text hover:text-primary'>
-            <Link href="/login">Login</Link>
-          </li>
-          <li className={`${style.nav_btn} bg-accent text-background`}>
-            <Link href="/signup">Sign up</Link>
-          </li>
-          {/* <li className="py-2 px-2">
-            <Link href="/">My Account</Link>
-          </li> */}
+          {session?.user ? (
+            <li className="py-2 px-2">
+              <Link href="/">My Account</Link>
+            </li>
+          ) : (
+            <>
+              <li className="border-2 border-text text-semibold hover:bg-text hover:text-primary">
+                <Link href="/login">Login</Link>
+              </li>
+              <li className={`${style.nav_btn} bg-accent text-background`}>
+                <Link href="/signup">Sign up</Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </nav>
