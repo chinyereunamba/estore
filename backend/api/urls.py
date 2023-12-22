@@ -12,4 +12,7 @@ router.register(r"orders", OrderView, basename="orders")
 
 urlpatterns = [
     path("v1/", include(router.urls)),
+    path('v1/orders/items', OrderItemView.as_view({"get": "list"})),
+    path('v1/orders/items', OrderItemView.as_view({"post": "create"})),
+    path('v1/orders/items', OrderItemView.as_view({"put": "partial_update"})),
 ]

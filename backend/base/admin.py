@@ -13,10 +13,13 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ["user", "product", "quantity", "order_number", "date_ordered"]
+    list_display = ["user", "order_number", "date_ordered"]
     list_filter = ["user"]
     search_fields = ["order_number"]
     readonly_fields = ['order_number']
+
+class OrderItemAdmin(admin.ModelAdmin):
+    list_display = ['order', 'product']
 
 
 admin.site.register(Category)
