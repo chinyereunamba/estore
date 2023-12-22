@@ -1,6 +1,5 @@
-import NextAuth, { NextAuthOptions, User } from "next-auth"
 import Credentials from "next-auth/providers/credentials"
-
+import GoogleProvider from "next-auth/providers/google";
 
 const SIGN_IN_HANDLERS = {
     'credentials': async (user, account, profile, email, credentials) => {
@@ -64,8 +63,8 @@ export const authOptions = {
             },
         }),
         GoogleProvider({
-            clientId: process.env.GOOGLE_CLIENT_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            clientId: process.env.GOOGLE_CLIENT_ID ?? "",
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
             authorization: {
                 params: {
                     prompt: "consent",
@@ -94,12 +93,12 @@ export const authOptions = {
                 return token;
             }
             if (getCurrentEpochTime() > token["ref"]) {
-                const response = await axios({
-                    method: "post",
-                    url: process.env.NEXTAUTH_BACKEND_URL + "auth/token/refresh/",
-                    data: {
-                        refresh: token["refresh_token"],
-                    },
+                const response = await fetch(`${process.env.NEXTAUTH_BACKEND_URL}auth/token/refresh/`, {
+                    method: "POST",
+                    body: JSON.stringify({ refresh: token['refresh_token'] }),
+                    headers: {
+                        'Content-Type': "application/json"
+                    }
                 });
                 token["access_token"] = response.data.access;
                 token["refresh_token"] = response.data.refresh;
