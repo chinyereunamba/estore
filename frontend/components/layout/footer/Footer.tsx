@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import style from "../layout.module.css";
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa6";
+import Logo from "@/components/utils/logo";
 
 export default function Footer() {
   const help = [
@@ -64,7 +65,7 @@ export default function Footer() {
       <div className="flex justify-between py-10 border-t-2 border-t-secondary mt-8 md:mx-10 items-center">
         <ul className="flex gap-5 items-center">
           <Link href={"/"}>
-            <h4 className={style.logo}>Digital Harbor</h4>
+            <Logo />
           </Link>
           {about.map((link, index) => (
             <li key={index}>

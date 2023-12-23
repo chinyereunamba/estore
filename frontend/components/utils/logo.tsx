@@ -2,33 +2,12 @@ export default function Logo() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="220"
-      height="50"
+      width="200"
+      height="40"
       viewBox="0 0 58.208332 13.229167"
       version="1.1"
       id="svg5"
     >
-      {/* <sodipodi:namedview
-        id="namedview7"
-        bordercolor="#999999"
-        borderopacity="1"
-        inkscape:pageshadow="0"
-        inkscape:pageopacity="0"
-        inkscape:pagecheckerboard="0"
-        inkscape:document-units="mm"
-        showgrid="false"
-        inkscape:zoom="1.9628562"
-        inkscape:cx="143.41346"
-        inkscape:cy="122.01607"
-        inkscape:window-width="1920"
-        inkscape:window-height="1001"
-        inkscape:window-x="-9"
-        inkscape:window-y="-9"
-        inkscape:window-maximized="1"
-        inkscape:current-layer="layer4"
-        pagecolor="#ffffff"
-        units="px"
-      /> */}
       <defs id="defs2" />
       <g id="layer1" />
       <g id="layer4">
