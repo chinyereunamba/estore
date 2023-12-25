@@ -165,12 +165,14 @@ ACCOUNT_UNIQUE_EMAIL = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMAIL_ON_GET = True
 
+LOGIN_URL = "http://localhost:8000/api/auth/login/"
+
 SOCIALACCOUNT_PROVIDERS = {
     "google": {
         "APP": {
-            "client_id": config('CLIENT_ID'),  # replace me
-            "secret": config('CLIENT_SECRET'),        # replace me
-            "key": "",                               # leave empty
+            "client_id": config("CLIENT_ID"),  # replace me
+            "secret": config("CLIENT_SECRET"),  # replace me
+            "key": "",  # leave empty
         },
         "SCOPE": [
             "profile",
@@ -185,6 +187,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 
 # Simple JWT
+JWT_AUTH_COOKIE = "my-app-auth"
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
@@ -202,6 +205,7 @@ SIMPLE_JWT = {
 REST_AUTH = {
     "USE_JWT": True,
     "JWT_AUTH_HTTPONLY": False,
+    "USER_DETAILS_SERIALIZER": "users.serializers.CustomUserDetailsSerializer",
 }
 
 
