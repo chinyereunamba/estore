@@ -30,12 +30,11 @@
 
 .nav_items li {
     padding: 0.5rem;
-    text-transform: uppercase;
 }
 
 .nav_items ul a {
     font-size: 1rem;
-    /* color: #767; */
+    font-weight: 700;
 }
 
 .cart {
@@ -82,7 +81,7 @@ li.auth_fnc:nth-child(1) {
 }
 
 .auth_fnc:last-child {
-    border: 2px solid var(--accent);
+    border: 3px solid var(--accent);
     background: var(--accent);
     color: var(--background);
 }

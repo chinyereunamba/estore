@@ -51,10 +51,13 @@ h5 {
 }
 
 p,
-li,
 a {
-    font-size: 1.05rem;
+    font-size: 1rem;
     font-weight: 400;
+}
+
+li{
+    font-size: .9rem;
 }
 
 small {
