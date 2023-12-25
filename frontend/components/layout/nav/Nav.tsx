@@ -42,7 +42,7 @@ export default function Nav() {
         <div className={`${style.nav_items} ${show ? style.active : ""}`}>
           <ul>
             <li>
-              <Link href={"/"}>Shop</Link>
+              <Link href={"/shop"}>Shop</Link>
             </li>
             <li>
               <Link href={"/"}>About</Link>
@@ -73,7 +73,7 @@ export default function Nav() {
           <div>
             <ul className={style.account}>
               <li
-                className={style.auth_fnc}
+                className={`${style.auth_fnc} shadow-lg`}
                 onClick={() => {
                   setShowAccount(!showAccount);
                 }}
