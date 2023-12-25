@@ -34,7 +34,7 @@ export default function Nav() {
   const [showAccount, setShowAccount] = useState(false);
 
   return (
-    <nav className="flex items-center justify-between px-8 py-3">
+    <nav className="flex items-center justify-between px-8 py-3 z-30">
       <div className={style.logo}>
         <Logo />
       </div>
@@ -96,7 +96,7 @@ export default function Nav() {
                   <FaListCheck />
                   <Link href={"/"}>My Wishlist</Link>
                 </li>
-                <li className="" onClick={() => signOut()}>
+                <li className="cursor-pointer" onClick={() => signOut()}>
                   Log out
                 </li>
               </ul>
