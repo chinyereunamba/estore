@@ -16,7 +16,7 @@
 .search input,
 .search button,
 .products button {
-    border-radius: 10px;
+    border-radius: 8px;
 }
 
 .search input:focus {
@@ -95,12 +95,10 @@
 
 .product_card .info {
     height: 100px;
-    border: 2px solid;
 }
 
 .product_card .header {
     height: calc(100% - 170px);
-    border: 1px solid;
     margin-bottom: 10px;
 }
 
@@ -121,6 +119,7 @@
 
 .product_card .footer,
 .product_card .footer button {
+    transition: .3s;
     width: 100%;
 }
 

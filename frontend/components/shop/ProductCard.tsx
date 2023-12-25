@@ -16,14 +16,15 @@ export default function ProductCard({
 }: ProductCard) {
   
     const startFnc = noOfStars
+    const productName = productTitle.substring(0, 35) + '...'
 
   return (
     <div className={style.product_card}>
       <div className={style.header}></div>
       <div className={style.info}>
-        <p>{productTitle}</p>
-        <p>${price}</p>
-        <div className={`flex gap-1 ${style.stars}`}>
+        <p>{productName}</p>
+        <p className="font-bold">${price}</p>
+        <div className={`flex gap-1 pt-1 ${style.stars}`}>
           <FaStar />
           <FaStar />
           <FaStar />
@@ -32,7 +33,7 @@ export default function ProductCard({
         </div>
       </div>
       <div className={style.footer}>
-        <button>Add to Card</button>
+        <button>Add to Cart</button>
       </div>
     </div>
   );
