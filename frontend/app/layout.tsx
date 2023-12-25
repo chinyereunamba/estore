@@ -6,7 +6,6 @@ import SessionProvider  from "./Providers";
 import { getServerSession } from "next-auth";
 const inter = Inter({ subsets: ["latin"] });
 const lato = Lato({ subsets: ["latin"], weight: ["700", "400"] });
-const play = Playfair_Display({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Digital Harbor",

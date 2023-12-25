@@ -4,10 +4,10 @@ import React, { useState } from "react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import {
-  FaMagnifyingGlass,
   FaBagShopping,
   FaHeart,
   FaListCheck,
+  FaAngleDown
 } from "react-icons/fa6";
 import style from "../layout.module.css";
 import Logo from "@/components/utils/logo";
@@ -73,12 +73,13 @@ export default function Nav() {
           <div>
             <ul className={style.account}>
               <li
-                className={`${style.auth_fnc} shadow-lg`}
+                className={`${style.auth_fnc} shadow-lg flex gap-1 items-center`}
                 onClick={() => {
                   setShowAccount(!showAccount);
                 }}
               >
                 My Account
+                <FaAngleDown />
               </li>
               <ul
                 className={`${style.account_items} ${

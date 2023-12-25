@@ -49,7 +49,7 @@ const SIGN_IN_PROVIDERS: Array<keyof typeof SIGN_IN_HANDLERS> = Object.keys(
     SIGN_IN_HANDLERS
 ) as Array<keyof typeof SIGN_IN_HANDLERS>;
 
-export const authOptions:NextAuthOptions = {
+export const authOptions: NextAuthOptions = {
     session: {
         strategy: 'jwt',
         maxAge: BACKEND_REFRESH_TOKEN_LIFETIME,
@@ -110,13 +110,6 @@ export const authOptions:NextAuthOptions = {
         async jwt({ user, token, account }: any) {
             if (user && account) {
                 let backendResponse = account.provider === 'credentials' ? user : account.meta;
-
-                // token['user'] = backendResponse.user;
-                // token['access_token'] = backendResponse.access;
-                // token['refresh_token'] = backendResponse.refresh;
-                // token['ref'] = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME;
-                // token['is_admin'] = backendResponse.user.is_admin;
-                // return token;
                 const customToken: CustomToken = {
                     user: backendResponse.user,
                     access_token: backendResponse.access,

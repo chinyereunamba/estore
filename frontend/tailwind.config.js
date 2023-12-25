@@ -17,10 +17,10 @@ module.exports = {
       sm: '0.750rem',
       base: '1.05rem',
       xl: '1.15rem',
-      '2xl': '1.5rem',
+      '2xl': '1.3rem',
       '3xl': '2.1rem',
-      '4xl': '3.1rem',
-      '5xl': '3.9rem',
+      '4xl': '2.7rem',
+      '5xl': '3rem',
     },
     fontWeight: {
       normal: '400',
