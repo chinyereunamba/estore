@@ -6,6 +6,7 @@ interface Products {
     "price": string,
     "quantity": number,
     "weight": number,
-    "brand": number,
-    "category": number,
+    "brand": string,
+    "category": string,
+    "image": string,
 }

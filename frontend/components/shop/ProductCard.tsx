@@ -1,9 +1,10 @@
 import { FaStar } from "react-icons/fa6";
 import style from "./shop.module.css";
+import Image from "next/image";
 
 interface ProductCard {
   productTitle: string;
-  img?: string;
+  img: string;
   price: number;
   noOfStars?: number;
 }
@@ -14,13 +15,14 @@ export default function ProductCard({
   price,
   noOfStars,
 }: ProductCard) {
-  
-    const startFnc = noOfStars
-    const productName = productTitle.substring(0, 35) + '...'
+  const startFnc = noOfStars;
+  const productName = productTitle.substring(0, 45) + "...";
 
   return (
     <div className={style.product_card}>
-      <div className={style.header}></div>
+      <div className={style.header}>
+        <Image src={img} width={205} height={214} alt={productName} />
+      </div>
       <div className={style.info}>
         <p>{productName}</p>
         <p className="font-bold">${price}</p>

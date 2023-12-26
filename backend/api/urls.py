@@ -10,6 +10,7 @@ router.register(r"products", ProductsView, basename="products")
 router.register(r"categories", CategoryView, basename="categories")
 router.register(r"brands", BrandView, basename="brands")
 router.register(r"orders", OrderView, basename="orders")
+router.register(r"products-images", ProductImageViewSet, basename="productimage")
 
 urlpatterns = [
     path("v1/", include(router.urls)),
@@ -19,5 +20,4 @@ urlpatterns = [
     path("v1/auth/login/", LoginView.as_view()),
     path("v1/auth/user/", UserDetailsView.as_view()),
     # path("v1/auth/user/", UserDetailsView.as_view()),
-
 ]

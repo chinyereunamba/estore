@@ -3,6 +3,7 @@ from .serializers import *
 from .models import *
 
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
 # Create your views here.
@@ -11,6 +12,16 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 class ProductsView(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+    permission_classes = [AllowAny]
+
+
+class ProductImageViewSet(ModelViewSet):
+    queryset = ProductImage.objects.all()
+    serializer_class = ProductImageSerializer
+    parser_classes = (
+        MultiPartParser,
+        FormParser,
+    )
     permission_classes = [AllowAny]
 
 

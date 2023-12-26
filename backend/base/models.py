@@ -1,5 +1,6 @@
 import random
 import string
+from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
@@ -7,6 +8,9 @@ from django.core.validators import MinValueValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.crypto import get_random_string
+import PIL
+from datetime import datetime
+
 
 # Create your models here.
 
@@ -32,6 +36,11 @@ class Category(models.Model):
         return self.category
 
 
+def upload_path(instance, filename):
+    filebase, extension = filename.split(".")
+    return "product_images/%s.%s" % (f"{instance.name}-{datetime.now()}", extension)
+
+
 class Product(models.Model):
     name = models.CharField(_("Product name"), max_length=255, blank=False, null=False)
     product_id = models.CharField(
@@ -39,13 +48,31 @@ class Product(models.Model):
     )
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, blank=True, null=True)
     description = models.TextField(_("Product Description"), blank=True, null=True)
-    price = models.DecimalField(validators=[MinValueValidator(0.00)], decimal_places=2, max_digits=14)
+    price = models.DecimalField(
+        validators=[MinValueValidator(0.00)], decimal_places=2, max_digits=14
+    )
     quantity = models.IntegerField(default=1, validators=[MinValueValidator(0)])
     weight = models.FloatField(_("Weight"), blank=True, null=True)
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
 
+    image = models.ImageField(
+        upload_to=upload_path, max_length=512, null=True, blank=True
+    )
+
+    date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+    date_updated = models.DateField(auto_now=True, blank=True, null=True)
+
     def __str__(self):
         return self.name
+
+
+class ProductImage(models.Model):
+    name = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name=_('Product name'))
+    image = models.ImageField(upload_to=upload_path, max_length=225)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.name} image was added"
 
 
 @receiver(pre_save, sender=Product)
@@ -95,4 +122,6 @@ class OrderItem(models.Model):
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
-        return f"{self.quantity} x {self.product.name} in Order #{self.order.order_number}"
+        return (
+            f"{self.quantity} x {self.product.name} in Order #{self.order.order_number}"
+        )
