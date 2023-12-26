@@ -16,14 +16,20 @@ class OrderAdmin(admin.ModelAdmin):
     list_display = ["user", "order_number", "date_ordered"]
     list_filter = ["user"]
     search_fields = ["order_number"]
-    readonly_fields = ['order_number']
+    readonly_fields = ["order_number"]
+
 
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ['order', 'product']
+    list_display = ["order", "product"]
+
+
+class ProductImageAdmin(admin.ModelAdmin):
+    list_display = ["name", "date_added"]
+    list_filter = ["name"]
 
 
 admin.site.register(Category)
 admin.site.register(Brand)
 admin.site.register(Product, ProductAdmin)
-admin.site.register(ProductImage)
+admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Order, OrderAdmin)

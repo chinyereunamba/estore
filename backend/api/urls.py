@@ -19,5 +19,6 @@ urlpatterns = [
     path("v1/orders/items", OrderItemView.as_view({"put": "partial_update"})),
     path("v1/auth/login/", LoginView.as_view()),
     path("v1/auth/user/", UserDetailsView.as_view()),
+    # path("v1/multiple", ProductImageViewSet.multiple_upload())
     # path("v1/auth/user/", UserDetailsView.as_view()),
 ]

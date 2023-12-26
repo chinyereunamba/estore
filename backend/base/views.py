@@ -5,6 +5,8 @@ from .models import *
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.decorators import action
 
 # Create your views here.
 
@@ -17,7 +19,7 @@ class ProductsView(ModelViewSet):
 
 class ProductImageViewSet(ModelViewSet):
     queryset = ProductImage.objects.all()
-    serializer_class = ProductImageSerializer
+    serializer_class = FileListSerializer
     parser_classes = (
         MultiPartParser,
         FormParser,

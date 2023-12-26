@@ -5,19 +5,34 @@ from rest_framework import serializers
 from .models import *
 
 
-class ProductImageSerializer(serializers.ModelSerializer):
-    image = serializers.ImageField(
-        max_length=100000, allow_empty_file=False, use_url=False
+class FileListSerializer(serializers.ModelSerializer):
+    image = serializers.ListField(
+        child=serializers.FileField(
+            max_length=100000, allow_empty_file=False, use_url=False
+        ),
+        write_only=True
     )
 
+    def create(self, validated_data):
+        product = Product.objects.get(name=validated_data.get('name'))
+        image = validated_data.pop("image")
+        for img in image:
+            print(img)
+            photo = ProductImage.objects.create(
+                image=img, name=product
+            )
+        return photo
+    
     class Meta:
         model = ProductImage
-        fields = ("id", "name", "image", "date_added")
+        fields = '__all__'
 
-    def create(self, validated_data):
-        image = validated_data.pop("image")
-        product_image = ProductImage.objects.create(image=image, **validated_data)
-        return product_image
+
+class ProductImageSerializer(ModelSerializer):
+    class Meta:
+        model = ProductImage
+        fields = "__all__"
+        read_only_field = ["name"]
 
 
 class CategorySerializer(ModelSerializer):
@@ -31,19 +46,15 @@ class BrandSerializer(ModelSerializer):
         model = Brand
         fields = "__all__"
 
-class ProductSerializer(serializers.ModelSerializer):
-    category = serializers.CharField(source='category.category')
-    brand = serializers.CharField(source='brand.brand')
-    product_images = serializers.SerializerMethodField()
 
-    def get_product_images(self, obj):
-        product_images = ProductImageSerializer()
-        lst = []
-        for image in product_images:
-            product_image = Product.objects.filter(name=image.name)
-            lst.append(product_image)
-        return lst
-            
+class MultipleImageSerializer(ModelSerializer):
+    images = serializers.ListField(child=serializers.ImageField())
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    category = CategorySerializer()
+    brand = BrandSerializer()
+    # product_images = ProductImageSerializer()
 
     class Meta:
         model = Product
@@ -62,7 +73,6 @@ class ProductSerializer(serializers.ModelSerializer):
         ]
 
 
-
 class OrderItemSerializer(ModelSerializer):
     class Meta:
         model = OrderItem
@@ -73,5 +83,3 @@ class OrderSerializer(ModelSerializer):
     class Meta:
         model = Order
         fields = "__all__"
-
-

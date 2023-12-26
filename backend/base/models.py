@@ -16,7 +16,9 @@ from datetime import datetime
 
 
 class Brand(models.Model):
-    brand = models.CharField(_("Brand name"), max_length=225, null=False, blank=False)
+    brand = models.CharField(
+        _("Brand name"), max_length=225, null=False, blank=False, unique=True
+    )
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -25,7 +27,7 @@ class Brand(models.Model):
 
 class Category(models.Model):
     category = models.CharField(
-        _("Product Category"), max_length=225, null=False, blank=False
+        _("Product Category"), max_length=225, null=False, blank=False, unique=True
     )
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -36,9 +38,20 @@ class Category(models.Model):
         return self.category
 
 
+# def upload_path(instance, filename):
+#     filebase, extension = filename.split(".")
+#     print(f"{instance.name}")
+#     return "product_images/%s.%s" % (
+#         f"{str(instance.name).strip()}-{datetime.now()}",
+#         extension,
+#     )
+    
 def upload_path(instance, filename):
     filebase, extension = filename.split(".")
-    return "product_images/%s.%s" % (f"{instance.name}-{datetime.now()}", extension)
+    folder_name = f"{str(instance.name).strip()}-{datetime.now()}"
+    folder_name = folder_name.replace(" ", "_")  
+
+    return f"product_images/{folder_name}.{extension}"
 
 
 class Product(models.Model):
@@ -62,17 +75,28 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_updated = models.DateField(auto_now=True, blank=True, null=True)
 
+    @property
+    def product_images(self):
+        images = []
+        return images
+
+    # @setattr
+    def get_product_images(self, value):
+        pass
+
     def __str__(self):
         return self.name
 
 
 class ProductImage(models.Model):
-    name = models.ForeignKey(Product, on_delete=models.CASCADE, verbose_name=_('Product name'))
+    name = models.ForeignKey(
+        Product, on_delete=models.CASCADE, verbose_name=_("Product name")
+    )
     image = models.ImageField(upload_to=upload_path, max_length=225)
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} image was added"
+        return self.name.name
 
 
 @receiver(pre_save, sender=Product)
