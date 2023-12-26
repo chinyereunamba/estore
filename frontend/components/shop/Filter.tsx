@@ -1,36 +1,39 @@
 import style from "./shop.module.css";
-import { useEffect, useState } from "react";
 
-export default function Filter() {
-  const [category, setCategory] = useState<Category[]>([]);
-  const [brand, setBrand] = useState<Brand[]>([]);
+const getCategory = async () => {
+  const response = await fetch(`http://127.0.0.1:8000/api/v1/categories`, {
+    method: "GET",
+    next: {
+      revalidate: 5000,
+    },
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  // await new Promise((resolve) => setTimeout(resolve, 500000));
+  const data: Category[] = await response.json();
+  return data;
+};
 
-  const getCategory = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/v1/categories", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setCategory(data));
-  };
+const getBrand = async () => {
+  // await new Promise((resolve) => setTimeout(resolve, 500000));
 
-  const getBrand = async () => {
-    const response = await fetch("http://127.0.0.1:8000/api/v1/brands", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => setBrand(data));
-  };
+  const response = await fetch(`http://127.0.0.1:8000/api/v1/brands`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-  useEffect(() => {
-    getCategory();
-    getBrand();
-  }, []);
+  const data: Brand[] = await response.json();
+  return data;
+};
+
+export default async function Filter() {
+  // const category = await getCategory();
+  // const brand = await getBrand();
+  const category: Category[] = [];
+  const brand: Brand[] = [];
 
   return (
     <div className={style.filter}>

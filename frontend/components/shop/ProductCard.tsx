@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa6";
 import style from "./shop.module.css";
 import Image from "next/image";
+import Link from "next/link";
 
 interface ProductCard {
   productTitle: string;
@@ -24,7 +25,9 @@ export default function ProductCard({
         <Image src={img} width={205} height={214} alt={productName} />
       </div>
       <div className={style.info}>
-        <p>{productName}</p>
+        <Link href={`/shop/${productTitle}`}>
+          <p>{productName}</p>
+        </Link>
         <p className="font-bold">${price}</p>
         <div className={`flex gap-1 pt-1 ${style.stars}`}>
           <FaStar />
