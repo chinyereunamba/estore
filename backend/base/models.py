@@ -45,11 +45,13 @@ class Category(models.Model):
 #         f"{str(instance.name).strip()}-{datetime.now()}",
 #         extension,
 #     )
-    
+
+
 def upload_path(instance, filename):
     filebase, extension = filename.split(".")
     folder_name = f"{str(instance.name).strip()}-{datetime.now()}"
-    folder_name = folder_name.replace(" ", "_")  
+    # folder_name = folder_name.replace(" ", "-")
+    folder_name[-1].replace(" ", "_")
 
     return f"product_images/{folder_name}.{extension}"
 
@@ -75,14 +77,6 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_updated = models.DateField(auto_now=True, blank=True, null=True)
 
-    @property
-    def product_images(self):
-        images = []
-        return images
-
-    # @setattr
-    def get_product_images(self, value):
-        pass
 
     def __str__(self):
         return self.name
@@ -96,7 +90,7 @@ class ProductImage(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.name.name
+        return f"{self.image} added"
 
 
 @receiver(pre_save, sender=Product)
