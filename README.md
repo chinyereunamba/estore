@@ -53,7 +53,7 @@ npm install
 
 ```
 
-# Running the Application
+## Running the Application
 
 ```bash
 # Example command to start Django development server
@@ -63,7 +63,7 @@ python manage.py runserver
 npm run dev
 
 ```
-# Project Structure
+## Project Structure
 
 ``` bash
 
@@ -71,5 +71,29 @@ project-root/
 │
 ├── backend/        # Django backend code
 └── frontend/       # React/Next.js frontend code
+
+```
+## Technologies Used
+
+List the main technologies and frameworks used in your project. Include versions if applicable.
+
+- [Django](https://djangoproject.org/)
+- [Django Rest Framework](https://www.django-rest-framework.org/)
+- [React](https://react.dev)
+- [Next.js](https://nextjs.org)
+- [Typescript](https://www.typescriptlang.org/)
+
+
+## Contributing
+Explain how others can contribute to your project. Provide guidelines for submitting issues, making pull requests, and any other relevant information.
+
+## License
+Specify the license under which your project is distributed.
+
+MIT
+
+```bash
+
+Customize this template according to the specifics of your project. Make sure to provide detailed and accurate information so that users and contributors can easily understand and engage with your project.
 
 ```
