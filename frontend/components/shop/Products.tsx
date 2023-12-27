@@ -3,24 +3,19 @@ import React, { useState, useEffect } from 'react'
 import style from './shop.module.css'
 import ProductCard from './ProductCard';
 
+const getProducts = async ():Promise<Products[]> => {
+  const response = await fetch("http://127.0.0.1:8000/api/v1/products", {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((res) => res.json())
+  return response
+};
 
-export default function Products() {
-      const [products, setProducts] = useState<Products[]>([]);
-
-      const getProducts = async () => {
-        const response = await fetch("http://127.0.0.1:8000/api/v1/products", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-          .then((res) => res.json())
-          .then((data) => setProducts(data));
-      };
-
-      useEffect(() => {
-        getProducts();
-      }, []);
+export default async function Products() {
+      const [products] = await Promise.all([getProducts()]) ;
 
   return (
     <div className={style.products}>
@@ -34,10 +29,12 @@ export default function Products() {
         {products.map((product, index) => (
           <ProductCard
             key={index}
+            id={product.id}
             productTitle={product.name}
             noOfStars={2}
             price={Number(product.price)}
             img={!product.image ? "/computing.jpg" : product.image}
+            productId={product.product_id}
           />
         ))}
       </div>

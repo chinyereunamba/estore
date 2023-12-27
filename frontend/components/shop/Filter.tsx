@@ -1,23 +1,17 @@
 import style from "./shop.module.css";
 
-const getCategory = async () => {
+const getCategory = async ():Promise<Category[]> => {
   const response = await fetch(`http://127.0.0.1:8000/api/v1/categories`, {
     method: "GET",
-    next: {
-      revalidate: 5000,
-    },
     headers: {
       "Content-Type": "application/json",
     },
   });
-  // await new Promise((resolve) => setTimeout(resolve, 500000));
-  const data: Category[] = await response.json();
+  const data = await response.json();
   return data;
 };
 
-const getBrand = async () => {
-  // await new Promise((resolve) => setTimeout(resolve, 500000));
-
+const getBrand = async ():Promise<Brand[]> => {
   const response = await fetch(`http://127.0.0.1:8000/api/v1/brands`, {
     method: "GET",
     headers: {
@@ -25,15 +19,12 @@ const getBrand = async () => {
     },
   });
 
-  const data: Brand[] = await response.json();
+  const data = await response.json();
   return data;
 };
 
 export default async function Filter() {
-  // const category = await getCategory();
-  // const brand = await getBrand();
-  const category: Category[] = [];
-  const brand: Brand[] = [];
+  const [brand, category] = await Promise.all([getBrand(), getCategory()])
 
   return (
     <div className={style.filter}>

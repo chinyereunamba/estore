@@ -6,12 +6,12 @@ interface Products {
     "price": string,
     "quantity": number,
     "weight": number,
-    "brand": {
+    "brand"?: {
         "id": number,
         "brand": string,
         "date_created": string
     },
-    "category": {
+    "category"?: {
         "id": number,
         "category": string,
         "date_created": string
