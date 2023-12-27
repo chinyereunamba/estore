@@ -48,8 +48,8 @@ class BrandSerializer(ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    category = CategorySerializer()
-    brand = BrandSerializer()
+    # category = CategorySerializer()
+    # brand = BrandSerializer()
     product_images = serializers.SerializerMethodField()
 
     def get_product_images(self, obj):
@@ -74,6 +74,22 @@ class ProductSerializer(serializers.ModelSerializer):
             "product_images",
         ]
 
+    # def update(self, instance, validated_data):
+    #     brand_data = validated_data.get("brand")
+    #     category_data = validated_data.get("category")
+
+    #     # Update other fields
+    #     instance.description = validated_data.get("description", instance.description)
+    #     instance.name = validated_data.get("name", instance.name)
+    #     instance.price = validated_data.get("price", instance.price)
+    #     instance.quantity = validated_data.get("quantity", instance.quantity)
+    #     instance.weight = validated_data.get("weight", instance.weight)
+    #     # ... update other fields ...
+    #     instance.image = validated_data.get('image', instance.image)
+
+    #     instance.save()
+    #     return instance
+
 
 class OrderItemSerializer(ModelSerializer):
     class Meta:
@@ -84,4 +100,10 @@ class OrderItemSerializer(ModelSerializer):
 class OrderSerializer(ModelSerializer):
     class Meta:
         model = Order
+        fields = "__all__"
+
+
+class ReviewSerializer(ModelSerializer):
+    class Meta:
+        model = Review
         fields = "__all__"

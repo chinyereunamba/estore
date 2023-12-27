@@ -11,6 +11,7 @@ router.register(r"categories", CategoryView, basename="categories")
 router.register(r"brands", BrandView, basename="brands")
 router.register(r"orders", OrderView, basename="orders")
 router.register(r"products-images", ProductImageViewSet, basename="productimage")
+router.register(r'reviews', ReviewView, basename='reviews')
 
 urlpatterns = [
     path("v1/", include(router.urls)),

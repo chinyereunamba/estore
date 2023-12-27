@@ -4,7 +4,7 @@ from tkinter.tix import Tree
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.utils.translation import gettext_lazy as _
-from django.core.validators import MinValueValidator
+from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
 from django.utils.crypto import get_random_string
@@ -38,20 +38,10 @@ class Category(models.Model):
         return self.category
 
 
-# def upload_path(instance, filename):
-#     filebase, extension = filename.split(".")
-#     print(f"{instance.name}")
-#     return "product_images/%s.%s" % (
-#         f"{str(instance.name).strip()}-{datetime.now()}",
-#         extension,
-#     )
-
-
 def upload_path(instance, filename):
     filebase, extension = filename.split(".")
     folder_name = f"{str(instance.name).strip()}-{datetime.now()}"
-    # folder_name = folder_name.replace(" ", "-")
-    folder_name[-1].replace(" ", "_")
+    folder_name = folder_name.replace(" ", "-")
 
     return f"product_images/{folder_name}.{extension}"
 
@@ -77,9 +67,20 @@ class Product(models.Model):
     date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
     date_updated = models.DateField(auto_now=True, blank=True, null=True)
 
-
     def __str__(self):
         return self.name
+
+    def upload_image(self, image):
+        return ProductImage.objects.create(name=self, image=image)
+
+    def upload_image(self, review, user, review_title, rating):
+        return Review.objects.create(
+            product=self,
+            user=user,
+            review=review,
+            review_title=review_title,
+            rating=rating,
+        )
 
 
 class ProductImage(models.Model):
@@ -143,3 +144,17 @@ class OrderItem(models.Model):
         return (
             f"{self.quantity} x {self.product.name} in Order #{self.order.order_number}"
         )
+
+
+class Review(models.Model):
+    user = models.ForeignKey(USER, on_delete=models.PROTECT)
+    product = models.ForeignKey(Product, on_delete=models.CASCADE)
+    review_title = models.CharField(_("Review Title"), max_length=125)
+    review = models.TextField(_("Product Review"))
+    rating = models.IntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(5)]
+    )
+    date_created = models.DateTimeField(auto_now_add=True, blank=True, null=True)
+
+    def __str__(self):
+        return self.review_title

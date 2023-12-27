@@ -27,9 +27,14 @@ class ProductImageAdmin(admin.ModelAdmin):
     list_display = ["name", "date_added"]
     list_filter = ["name"]
 
+class ReviewAdmin(admin.ModelAdmin):
+    list_display = ['user', 'product', 'date_created']
+    list_filter = ['product']
+
 
 admin.site.register(Category)
 admin.site.register(Brand)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(Review, ReviewAdmin)

@@ -18,6 +18,34 @@ class ProductsView(ModelViewSet):
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
 
+    @action(
+        detail=True,
+        methods=["post", "get", "retrieve"],
+        serializer_class=ReviewSerializer,
+    )
+    def reviews(self, request, pk=None):
+        product = self.get_object()
+        serializer = ReviewSerializer(data=request.data)
+        if serializer.is_valid():
+            review = serializer.validated_data.get("review")
+            rating = serializer.validated_data.get("rating")
+            review_title = serializer.validated_data.get("review_title")
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    @action(
+        detail=True, methods=["post", "get"], serializer_class=ProductImageSerializer
+    )
+    def upload_image(self, request, pk=None):
+        product = self.get_object()
+        serializer = ProductImageSerializer(data=request.data)
+        if serializer.is_valid():
+            image = serializer.validated_data["image"]
+            product_image = product.upload_image(image)
+            product_image_serializer = ProductImageSerializer(product_image)
+            return Response(product_image_serializer.data, status=201)
+        return Response(serializer.errors, status=400)
+
 
 class ProductImageViewSet(ModelViewSet):
     queryset = ProductImage.objects.all()
@@ -77,4 +105,10 @@ class OrderView(ModelViewSet):
 class OrderItemView(ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
+    permission_classes = [AllowAny]
+
+
+class ReviewView(ModelViewSet):
+    queryset = Review.objects.all()
+    serializer_class = ReviewSerializer
     permission_classes = [AllowAny]
