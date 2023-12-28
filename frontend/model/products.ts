@@ -17,5 +17,7 @@ interface Products {
         "date_created": string
     },
     "image": string,
-    "product_images": string[]
+    "product_images": string[],
+    "color": string,
+    "size": string
 }

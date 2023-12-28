@@ -14,6 +14,8 @@ export default function ProductPage({
   product_id,
   product_images,
   quantity,
+  color,
+  size,
   weight,
 }:Products) {
   return (
@@ -51,16 +53,16 @@ export default function ProductPage({
           </div>
           <div className={style.about_product}>
             <div className="">
-              <span>Brand</span> <span> Generic</span>
+              <span>Brand</span> <span> {brand?.brand}</span>
             </div>
             <div className="">
-              <span>Color</span> <span> Black</span>
+              <span>Color</span> <span> {color}</span>
             </div>
             <div className="">
-              <span>Weight</span> <span> 1.9kg</span>
+              <span>Weight</span> <span> {weight}kg</span>
             </div>
             <div className="">
-              <span>Size</span> <span> 12 x 10 x 5</span>
+              <span>Size</span> <span> {size}</span>
             </div>
           </div>
           <div className={style.cart_btn}>
@@ -82,6 +84,9 @@ export default function ProductPage({
                 Architecto, mollitia.
               </li>
             </ul>
+            <div>
+              <p>{ description }</p>
+            </div>
           </div>
         </div>
         <div className="lg:w-[20%] py-5 px-4"></div>

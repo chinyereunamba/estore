@@ -2,8 +2,10 @@ import "./globals.css";
 import { Inter, Lato, Playfair_Display } from "next/font/google";
 import Nav from "@/components/layout/nav/Nav";
 import Footer from "@/components/layout/footer/Footer";
-import SessionProvider  from "./Providers";
+import SessionProvider from "./Providers";
 import { getServerSession } from "next-auth";
+import {UserContextProvider} from "@/store/context";
+import ProductContextProvider from "@/store/productContext";
 const inter = Inter({ subsets: ["latin"] });
 const lato = Lato({ subsets: ["latin"], weight: ["700", "400"] });
 
@@ -21,11 +23,15 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <SessionProvider session={session}>
-        <body className={lato.className}>
-          <Nav />
-          {children}
-          <Footer />
-        </body>
+        <UserContextProvider>
+          <ProductContextProvider>
+          <body className={lato.className}>
+            <Nav />
+            {children}
+            <Footer />
+          </body>
+          </ProductContextProvider>
+        </UserContextProvider>
       </SessionProvider>
     </html>
   );

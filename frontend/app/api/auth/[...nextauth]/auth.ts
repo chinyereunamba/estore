@@ -2,6 +2,7 @@ import { NextAuthOptions } from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
 import CustomToken from '@/model/token';
+import { BLOCKED_PAGES } from 'next/dist/shared/lib/constants';
 
 const getCurrentEpochTime = (): number => {
     return Math.floor(new Date().getTime() / 1000);
@@ -110,15 +111,23 @@ export const authOptions: NextAuthOptions = {
         async jwt({ user, token, account }: any) {
             if (user && account) {
                 let backendResponse = account.provider === 'credentials' ? user : account.meta;
-                const customToken: CustomToken = {
-                    user: backendResponse.user,
-                    access_token: backendResponse.access,
-                    refresh_token: backendResponse.refresh,
-                    ref: getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME,
-                    is_admin: backendResponse.user.is_admin
-                };
+                // const customToken: CustomToken = {
+                //     user: backendResponse.user,
+                //     access_token: backendResponse.access,
+                //     refresh_token: backendResponse.refresh,
+                //     ref: getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME,
+                //     is_admin: backendResponse.user.is_admin
+                // };
 
-                return customToken;
+                // return customToken;
+                token.user = backendResponse.user
+                token.access_token = backendResponse.access
+                token.refresh_token = backendResponse.refresh
+                token.ref = getCurrentEpochTime() + BACKEND_ACCESS_TOKEN_LIFETIME
+                token.is_admin = backendResponse.user.is_admin
+
+                return token
+
             }
             if (getCurrentEpochTime() > token['ref']) {
                 try {

@@ -1,16 +1,8 @@
-import CustomToken from "@/model/token";
-import { getServerSession } from "next-auth";
-import { redirect } from "next/navigation";
+import Admin from '@/components/admin/Admin'
+import React from 'react'
 
-export default async function Admin() {
-  const session: CustomToken | null = await getServerSession();
-  if (!session || !session?.user.is_admin) {
-    redirect("/login");
-  }
+export default function AdminPage() {
   return (
-    <>
-      {/* {session.user.email} */}
-      <h2>Email: {session?.user.email}</h2>
-    </>
-  );
+    <Admin />
+  )
 }
