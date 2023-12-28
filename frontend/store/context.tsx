@@ -1,14 +1,14 @@
 // Importing required modules
 "use client";
 import React, { createContext, useState, useContext, useEffect } from "react";
-import { useSession, Session } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 // Defining types
 type UserContextProviderProps = {
   children: React.ReactNode;
 };
 
-type User = {
+type CustomSession = {
   user: {
     pk: number;
     email: string;
@@ -19,6 +19,23 @@ type User = {
     phone_number: string | null;
     address: string;
   };
+  access_token: string;
+  refresh_token: string;
+  ref: number;
+  is_admin: boolean;
+  iat?: number;
+  exp?: number;
+  jti?: string;
+};
+
+type UseSessionData = {
+  data: CustomSession | null;
+  update: any;
+  status: "authenticated" | "unauthenticated" | "loading";
+};
+
+type User = {
+  user: CustomSession["user"];
   access_token: string;
   refresh_token: string;
   ref: number;
@@ -39,7 +56,7 @@ const UserContext = createContext<UserContext | null>(null);
 // Defining the provider component
 export function UserContextProvider({ children }: UserContextProviderProps) {
   const [user, setUser] = useState<User>();
-  const { data: session } = useSession() as { data: Session };
+  const { data: session } = useSession() as UseSessionData;
 
   useEffect(() => {
     if (session) {
