@@ -48,8 +48,8 @@ class BrandSerializer(ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
-    # category = CategorySerializer()
-    # brand = BrandSerializer()
+    category = CategorySerializer()
+    brand = BrandSerializer()
     product_images = serializers.SerializerMethodField()
 
     def get_product_images(self, obj):
@@ -69,6 +69,8 @@ class ProductSerializer(serializers.ModelSerializer):
             "price",
             "quantity",
             "weight",
+            "color",
+            "size",
             "category",
             "image",
             "product_images",

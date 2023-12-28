@@ -53,6 +53,7 @@ class Product(models.Model):
     )
     brand = models.ForeignKey(Brand, on_delete=models.PROTECT, blank=True, null=True)
     description = models.TextField(_("Product Description"), blank=True, null=True)
+    # TODO: User ckeditor
     price = models.DecimalField(
         validators=[MinValueValidator(0.00)], decimal_places=2, max_digits=14
     )
@@ -62,6 +63,14 @@ class Product(models.Model):
 
     image = models.ImageField(
         upload_to=upload_path, max_length=512, null=True, blank=True
+    )
+    color = models.CharField(_("Product color"), max_length=40, blank=True, null=True)
+    size = models.CharField(
+        _("Size of product"),
+        max_length=40,
+        blank=True,
+        null=True,
+        help_text=_("size dimension"),
     )
 
     date_added = models.DateTimeField(auto_now_add=True, blank=True, null=True)
