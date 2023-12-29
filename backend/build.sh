@@ -4,17 +4,17 @@
 set -o errexit
 
 echo "Installing project dependencies..."
-python3.9 pip install -r requirements.txt
+python3.12 pip install -r requirements.txt
 
 echo "Making migrations"
-python3.9 manage.py makemigrations
-python3.9 manage.py migrate
+python3.12 manage.py makemigrations --noinput
+python3.12 manage.py migrate --noinput
 
 echo "Collect static..."
-python3.9 manage.py collectstatic --noinput --clear
+python3.12 manage.py collectstatic --noinput --clear
 
 # Create superuser
 echo "Create superuser!"
-python3.9 manage.py createsu 
+python3.12 manage.py createsu 
 
 echo "Build process completed!"
