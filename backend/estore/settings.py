@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config
 from datetime import timedelta
 import dj_database_url
+import cloudinary
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -29,7 +31,6 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = config("DJANGO_ALLOWED_HOSTS", "127.0.0.1,localhost".split(","))
-print(ALLOWED_HOSTS)
 
 AUTH_USER_MODEL = "users.User"
 AUTHENTICATION_BACKENDS = (
