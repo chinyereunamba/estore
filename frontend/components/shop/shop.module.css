@@ -162,9 +162,9 @@
 
 .product_card_list .header img {
     width: 100%;
-        height: 100%;
-        object-fit: cover;
-        object-position: center bottom;
+    height: 100%;
+    object-fit: cover;
+    object-position: center bottom;
 }
 
 .product_card_list .info {
@@ -199,7 +199,7 @@
     cursor: pointer;
 }
 
-.product_card_list .footer svg{
+.product_card_list .footer svg {
     font-size: 1.5rem;
     stroke: 1px solid black;
     background: transparent;
@@ -210,7 +210,7 @@
     color: #fff;
 }
 
-.product_card_list .footer button:hover{
+.product_card_list .footer button:hover {
     background: #000;
 }
 

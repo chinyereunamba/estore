@@ -28,6 +28,8 @@ type Product = {
 type ProductContext = {
   products: Product[] | undefined;
   setProducts: React.Dispatch<React.SetStateAction<Product[] | undefined>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ProductContext = createContext<ProductContext | null>(null);
@@ -40,6 +42,7 @@ export default function ProductContextProvider({
   children,
 }: ProductContextProviderProps) {
   const [products, setProducts] = useState<Product[] | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
     // Fetch products when the component mounts
@@ -66,11 +69,16 @@ export default function ProductContextProvider({
       setProducts(data);
     } catch (error) {
       console.error("Error fetching products:", error);
+    } finally {
+      // Set loading state to false after the API request completes
+      setIsLoading(false);
     }
   }
 
   return (
-    <ProductContext.Provider value={{ products, setProducts }}>
+    <ProductContext.Provider
+      value={{ products, setProducts, isLoading, setIsLoading }}
+    >
       {children}
     </ProductContext.Provider>
   );

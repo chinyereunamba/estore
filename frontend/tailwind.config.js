@@ -26,13 +26,13 @@ module.exports = {
       normal: '400',
       bold: '700',
     },
-    colors: {
-      'text': '#051523',
-      'background': '#f8fbfe',
-      'primary': '#258ee1',
-      'secondary': '#d786ee',
-      'accent': '#e754c0',
-    },
+    // colors: {
+    //   'text': '#051523',
+    //   'background': '#f8fbfe',
+    //   'primary': '#258ee1',
+    //   'secondary': '#d786ee',
+    //   'accent': '#e754c0',
+    // },
 
 
   },

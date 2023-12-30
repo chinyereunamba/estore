@@ -36,7 +36,7 @@ export default function ProductCardList({
   const [like, setLike] = useState<boolean>(false);
 
   return (
-    <div className={style.product_card_list}>
+    <div className={`${style.product_card_list} my-2`}>
       <div className={style.header}>
         <Image src={img} width={205} height={205} alt={productName} />
       </div>

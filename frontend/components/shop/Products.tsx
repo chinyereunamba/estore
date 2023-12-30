@@ -6,19 +6,13 @@ import { FaList } from "react-icons/fa6";
 import { FaThLarge } from "react-icons/fa";
 import ProductCardList from "./ProductCardList";
 import { useProductContext } from "@/store/productContext";
+import GridCardSkeleton from "../utils/GridCardSkeleton";
+import ListCardSkeleton from "../utils/ListCardSkeleton";
 
 export default function Products() {
-  const [grid, setGrid] = useState<boolean>(false);
+  const [grid, setGrid] = useState<boolean>(true);
   const { products } = useProductContext();
-
-  const productDisplay = () => {
-    grid ? "grid" : "list";
-    console.log(grid);
-  };
-
-  useEffect(() => {
-    productDisplay();
-  }, [grid]);
+  const { isLoading } = useProductContext();
 
   return (
     <div className={style.products}>
@@ -47,6 +41,16 @@ export default function Products() {
         <p>{!products?.length ? 0 : products?.length} products found</p>
       </div>
       <div className="flex flex-wrap gap-4">
+        {isLoading &&
+          Array(12)
+            .fill(0)
+            .map((el, index) =>
+              grid ? (
+                <GridCardSkeleton key={index} />
+              ) : (
+                <ListCardSkeleton key={index} />
+              )
+            )}
         {products?.map((product, index) =>
           grid ? (
             <ProductCard
