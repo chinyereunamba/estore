@@ -14,8 +14,6 @@ from pathlib import Path
 from decouple import config
 from datetime import timedelta
 import dj_database_url
-import cloudinary
-import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -108,7 +106,7 @@ WSGI_APPLICATION = "estore.wsgi.application"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 if not DEBUG:
-    DATABASES = {"default": dj_database_url.parse(config("DATABASE_URL"))}
+    DATABASES = {"default": dj_database_url.parse(config("POSTGRES_URL"))}
 else:
     DATABASES = {
         "default": {
