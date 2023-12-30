@@ -1,7 +1,7 @@
 import style from "./shop.module.css";
 
 const getCategory = async ():Promise<Category[]> => {
-  const response = await fetch(`http://127.0.0.1:8000/api/v1/categories`, {
+  const response = await fetch(`${process.env.NEXTAUTH_BACKEND_URL}v1/categories`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -12,7 +12,7 @@ const getCategory = async ():Promise<Category[]> => {
 };
 
 const getBrand = async ():Promise<Brand[]> => {
-  const response = await fetch(`http://127.0.0.1:8000/api/v1/brands`, {
+  const response = await fetch(`${process.env.NEXTAUTH_BACKEND_URL}v1/brands`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -38,6 +38,7 @@ export default async function Filter() {
       </div>
       <div className={style.brand}>
         <h5>Brand</h5>
+        <input type="text" placeholder="Search brands..." className="border w-full px-2 py-2 rounded-lg my-2"/>
         <ul>
           {brand.map((brand, index) => (
             <li key={index}>

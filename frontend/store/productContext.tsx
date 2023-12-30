@@ -48,12 +48,15 @@ export default function ProductContextProvider({
 
   async function getProducts() {
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/v1/products", {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_BACKEND_URL}v1/products`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`HTTP error! Status: ${response.status}`);

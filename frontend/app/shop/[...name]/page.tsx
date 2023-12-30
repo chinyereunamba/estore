@@ -4,15 +4,18 @@ export default async function Page({ params }: { params: { name: string } }) {
   const path = params.name;
   const id = params.name[0];
 
-  const res = await fetch(`http://127.0.0.1:8000/api/v1/products/${id}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    next: {
-      revalidate: 5,
-    },
-  });
+  const res = await fetch(
+    `${process.env.NEXTAUTH_BACKEND_URL}v1/products/${id}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      next: {
+        revalidate: 5,
+      },
+    }
+  );
   const product:Products = await res.json();
 
   return (
