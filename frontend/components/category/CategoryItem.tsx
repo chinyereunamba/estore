@@ -11,16 +11,15 @@ interface CatInterface {
 
 export default function CategoryItem({ img, title, link }: CatInterface) {
   return (
-    <div className="max-w-80 w-full lg:w-96 flex flex-col h-96 shadow-lg rounded-lg bg-primary text-background ">
-      <div className={`h-80 ${style.cat_img}`}>
-        <Image src={img} alt={title} height={400} width={400} />
+    <Link href={link}>
+      <div className={`${style.category} flex flex-col shadow-lg`}>
+        {/* <div className={`h-80 ${style.cat_img}`}>
+          <Image src={img} alt={title} height={400} width={400} />
+        </div>
+        <div>
+          <h3>{title}</h3>
+        </div> */}
       </div>
-      <div className="p-3">
-        <Link href={link}>
-          <h4>{title}</h4>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </Link>
-      </div>
-    </div>
+    </Link>
   );
 }

@@ -1,0 +1,6 @@
+.product{
+    width: calc(1000px / 3);
+    height: 300px;
+    border-radius: 15px;
+    background: red;
+}

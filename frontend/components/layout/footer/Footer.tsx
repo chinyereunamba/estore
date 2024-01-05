@@ -29,66 +29,68 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`px-10 pt-5 ${style.footer}`}>
-      <div className={`flex gap-24 md:mx-10 ${style.footer_sec_1}`}>
-        <ul>
-          <h5>Need help?</h5>
-          <div className="pt-3">
-            {help.map((link, index) => (
+    <footer className={`px-10 pt-5`}>
+      <section className={`${style.footer} m-auto`}>
+        <div className={`flex gap-24 md:px-5 ${style.footer_sec_1}`}>
+          <ul>
+            <h5>Need help?</h5>
+            <div className="pt-3">
+              {help.map((link, index) => (
+                <li key={index}>
+                  <Link href={link.link}>{link.name}</Link>
+                </li>
+              ))}
+            </div>
+          </ul>
+          <ul>
+            <h5>Categories</h5>
+            <div className="pt-3">
+              {category.map((link, index) => (
+                <li key={index}>
+                  <Link href={link.link}>{link.name}</Link>
+                </li>
+              ))}
+            </div>
+          </ul>
+          <ul>
+            <h5>Useful links </h5>
+            <div className="pt-3">
+              {useful.map((link, index) => (
+                <li key={index}>
+                  <Link href={link.link}>{link.name}</Link>
+                </li>
+              ))}
+            </div>
+          </ul>
+        </div>
+        <div className="flex justify-between py-10 border-t-2 border-t-secondary mt-8  md:px-5 items-center">
+          <ul className="flex gap-5 items-center">
+            <Link href={"/"}>
+              <Logo />
+            </Link>
+            {about.map((link, index) => (
               <li key={index}>
-                <Link href={link.link}>{link.name}</Link>
+                <Link href={link.link}>
+                  {link.name}
+                </Link>
               </li>
             ))}
-          </div>
-        </ul>
-        <ul>
-          <h5>Categories</h5>
-          <div className="pt-3">
-            {category.map((link, index) => (
-              <li key={index}>
-                <Link href={link.link}>{link.name}</Link>
-              </li>
-            ))}
-          </div>
-        </ul>
-        <ul>
-          <h5>Useful links </h5>
-          <div className="pt-3">
-            {useful.map((link, index) => (
-              <li key={index}>
-                <Link href={link.link}>{link.name}</Link>
-              </li>
-            ))}
-          </div>
-        </ul>
-      </div>
-      <div className="flex justify-between py-10 border-t-2 border-t-secondary mt-8 md:mx-10 items-center">
-        <ul className="flex gap-5 items-center">
-          <Link href={"/"}>
-            <Logo />
-          </Link>
-          {about.map((link, index) => (
-            <li key={index}>
-              <Link className="text-xl" href={link.link}>
-                {link.name}
+          </ul>
+          <ul>
+            <div className="flex gap-4">
+              <Link className="text-3xl" href={"/"}>
+                <FaTwitter />
               </Link>
-            </li>
-          ))}
-        </ul>
-        <ul>
-          <div className="flex gap-4">
-            <Link className="text-3xl" href={"/"}>
-              <FaTwitter />
-            </Link>
-            <Link className="text-3xl" href={"/"}>
-              <FaFacebook />
-            </Link>
-            <Link className="text-3xl" href={"/"}>
-              <FaInstagram />
-            </Link>
-          </div>
-        </ul>
-      </div>
+              <Link className="text-3xl" href={"/"}>
+                <FaFacebook />
+              </Link>
+              <Link className="text-3xl" href={"/"}>
+                <FaInstagram />
+              </Link>
+            </div>
+          </ul>
+        </div>
+      </section>
     </footer>
   );
 }

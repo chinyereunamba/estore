@@ -1,0 +1,6 @@
+.brand{
+    width: calc((1060px / 5) - 1.45rem);
+    height: 100px;
+    background: red;
+    border-radius: 15px;
+}

@@ -6,8 +6,8 @@ import CategoryItem from "./CategoryItem";
 export default function Category() {
   return (
     <SectionContainer>
-      <Title title="Categories" />
-      <div className="flex gap-8 flex-wrap lg:flex-nowrap gap-y-10">
+      {/* <Title title="Categories" /> */}
+      <div className="flex flex-wrap gap-7 m-auto">
         <CategoryItem img="/best_seller.jpg" title="Best Seller" link="/" />
         <CategoryItem img="/computing.jpg" title="Computing" link="/" />
         <CategoryItem img="/mobile.png" title="Mobile Accessories" link="/" />

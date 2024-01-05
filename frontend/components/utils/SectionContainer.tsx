@@ -1,4 +1,5 @@
 import React from "react";
+import style from './utils.module.css'
 
 type SectionContainerProps = {
   children: React.ReactNode;
@@ -10,7 +11,7 @@ export default function SectionContainer({
   props,
 }: SectionContainerProps) {
   return (
-    <section className={`lg:px-0 max-w-screen-lg m-auto px-5 ${props?.class}`}>
+    <section className={`${style.section_container} m-auto md:px-5 ${props?.class}`}>
       {children}
     </section>
   );
