@@ -14,10 +14,19 @@ from datetime import datetime
 # Create your models here.
 
 
+def upload_folder(instance, filename):
+    filebase, extension = filename.split(".")
+    filename = str(instance.name).strip()
+    filename = filename.replace(" ", "-")
+
+    return f"{filename}.{extension}"
+
+
 class Brand(models.Model):
     brand = models.CharField(
         _("Brand name"), max_length=225, null=False, blank=False, unique=True
     )
+    brand_img = models.ImageField(_("Brand Image"), upload_to=upload_folder, blank=True, null=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -28,6 +37,7 @@ class Category(models.Model):
     category = models.CharField(
         _("Product Category"), max_length=225, null=False, blank=False, unique=True
     )
+    category_img = models.ImageField(_("Category Image"), upload_to=upload_folder, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
