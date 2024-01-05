@@ -25,7 +25,7 @@ export default function FAQs() {
   return (
     <SectionContainer>
       <Title title="FAQs" />
-      <section className={style.faqs}>
+      <section className={`${style.faqs}`}>
         {qas.map((item, index) => (
           <QAs
             question={item.question}

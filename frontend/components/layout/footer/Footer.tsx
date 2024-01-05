@@ -29,9 +29,9 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`px-10 pt-5`}>
+    <footer className={`pt-5`}>
       <section className={`${style.footer} m-auto`}>
-        <div className={`flex gap-24 md:px-5 ${style.footer_sec_1}`}>
+        <div className={`flex gap-24 flex-wrap md:px-5 ${style.footer_sec_1}`}>
           <ul>
             <h5>Need help?</h5>
             <div className="pt-3">
@@ -63,16 +63,14 @@ export default function Footer() {
             </div>
           </ul>
         </div>
-        <div className="flex justify-between py-10 border-t-2 border-t-secondary mt-8  md:px-5 items-center">
-          <ul className="flex gap-5 items-center">
+        <div className="flex justify-between py-10 border-t-2 border-t-secondary mt-8 items-center flex-wrap gap-5">
+          <ul className="flex gap-5 items-center flex-wrap">
             <Link href={"/"}>
               <Logo />
             </Link>
             {about.map((link, index) => (
               <li key={index}>
-                <Link href={link.link}>
-                  {link.name}
-                </Link>
+                <Link href={link.link}>{link.name}</Link>
               </li>
             ))}
           </ul>

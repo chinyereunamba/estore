@@ -11,7 +11,7 @@ export default function SectionContainer({
   props,
 }: SectionContainerProps) {
   return (
-    <section className={`${style.section_container} m-auto ${props?.class}`}>
+    <section className={`${style.section_container} px-5 lg:px-0 m-auto ${props?.class}`}>
       {children}
     </section>
   );
