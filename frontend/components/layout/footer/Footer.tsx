@@ -29,7 +29,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className={`pt-5`}>
+    <footer className={`pt-5 px-5 md:px-1`}>
       <section className={`${style.footer} m-auto`}>
         <div className={`flex gap-24 flex-wrap md:px-5 ${style.footer_sec_1}`}>
           <ul>
