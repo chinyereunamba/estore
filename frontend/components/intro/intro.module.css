@@ -1,21 +1,4 @@
-.swiper {
-    width: 90%;
-    margin: auto;
-    height: 85vh;
-}
-
-.slide {
-    width: 100%;
-}
-
-.slide img {
-    width: 100%;
-    /* object-fit: scale-down; */
-    vertical-align: baseline;
-}
-
-@media screen and (max-width: 1024px) {
-    .swiper {
-        height: 50vh;
-    }
+.intro button{
+    background: #000;
+    color: #fff;
 }

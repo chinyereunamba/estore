@@ -71,10 +71,6 @@ button {
     border-radius: 10px;
 }
 
-.logo {
-    font-family: 'Dancing Script', curvise;
-    font-weight: 400;
-}
 
 @media (max-width:1024px) {
     h1 {
