@@ -1,3 +1,7 @@
+.brands{
+    justify-content: center;
+}
+
 .brand{
     width: calc((1060px / 5) - 1.45rem);
     height: 100px;

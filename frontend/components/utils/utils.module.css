@@ -1,5 +1,11 @@
-.section_container{
+.section_container {
     max-width: 1100px;
     width: 100%;
     margin-block: 4rem;
+}
+
+@media screen and (max-width: 768px) {
+    .section_container {
+        margin-inline: 1.25rem;
+    }
 }
