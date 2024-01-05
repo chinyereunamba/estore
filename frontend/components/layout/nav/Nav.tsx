@@ -16,14 +16,15 @@ import { useUserContext } from "@/store/context";
 function Nav() {
   const { user } = useUserContext();
   const [show, setShow] = useState(false);
-  const [showAccount, setShowAccount] = useState(false);
   return (
-    <nav className="px-5 py-3">
-      <div className={`flex items-center m-auto justify-between ${style.nav}`}>
+    <nav>
+      <div
+        className={`flex items-center m-auto justify-between lg:px-0 px-5 py-3 ${style.nav}`}
+      >
         <Link className="logo" href={"/"}>
           <Logo />
         </Link>
-        <div className={style.nav_links}>
+        <div className={`${style.nav_links} ${show && style.active}`}>
           <ul className="flex gap-5 text-lg">
             <li>
               <Link href={"/"} className="flex gap-2 items-center">
@@ -53,6 +54,11 @@ function Nav() {
               </>
             )}
           </ul>
+          <div className={style.burger} onClick={() => setShow(!show)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
         </div>
       </div>
     </nav>
