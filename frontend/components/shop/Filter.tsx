@@ -1,27 +1,5 @@
+import { getBrand, getCategory } from "@/model/fnc";
 import style from "./shop.module.css";
-
-const getCategory = async ():Promise<Category[]> => {
-  const response = await fetch(`${process.env.NEXTAUTH_BACKEND_URL}v1/categories`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const data = await response.json();
-  return data;
-};
-
-const getBrand = async ():Promise<Brand[]> => {
-  const response = await fetch(`${process.env.NEXTAUTH_BACKEND_URL}v1/brands`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const data = await response.json();
-  return data;
-};
 
 export default async function Filter() {
   const [brand, category] = await Promise.all([getBrand(), getCategory()])

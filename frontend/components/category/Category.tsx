@@ -2,16 +2,18 @@ import React from "react";
 import Title from "../utils/Title";
 import SectionContainer from "../utils/SectionContainer";
 import CategoryItem from "./CategoryItem";
+import { getCategory } from "@/model/fnc";
 
-export default function Category() {
+
+export default async function Category() {
+  const [category] = await Promise.all([getCategory()]);
   return (
     <SectionContainer>
       {/* <Title title="Categories" /> */}
-      <div className="flex flex-wrap gap-7 m-auto justify-center">
-        <CategoryItem img="/best_seller.jpg" title="Best Seller" link="/" />
-        <CategoryItem img="/computing.jpg" title="Computing" link="/" />
-        <CategoryItem img="/mobile.png" title="Mobile Accessories" link="/" />
-        <CategoryItem img="/home.jpg" title="Home Appliances" link="/" />
+      <div className="flex flex-wrap gap-7 m-auto">
+        {category.map((item, index) => (
+        <CategoryItem key={index} img="/best_seller.jpg" title={item.category} link="/" />
+        ))}
       </div>
     </SectionContainer>
   );

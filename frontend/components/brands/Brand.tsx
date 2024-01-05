@@ -1,8 +1,14 @@
-import React from 'react'
-import style from './brand.module.css'
+import React from "react";
+import style from "./brand.module.css";
 
-export default function Brand() {
+type BrandProps = {
+  brandName: string;
+};
+
+export default function Brand({ brandName }: BrandProps) {
   return (
-    <div className={style.brand}></div>
-  )
+    <div className={style.brand}>
+      <p>{brandName}</p>
+    </div>
+  );
 }
