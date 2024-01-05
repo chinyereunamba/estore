@@ -13,6 +13,9 @@ export default function Products() {
   const [grid, setGrid] = useState<boolean>(true);
   const { products } = useProductContext();
   const { isLoading } = useProductContext();
+  products?.map(item => {
+    console.log(item.image)
+  })
 
   return (
     <div className={style.products}>

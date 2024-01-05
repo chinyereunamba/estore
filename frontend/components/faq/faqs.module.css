@@ -1,0 +1,52 @@
+.faqs{
+    background-color: gray;
+    border-radius: 15px;
+    color: #fff;
+}
+.qa {
+    transition: .5s;
+}
+
+.qa:nth-child(n){
+    border-bottom: 1px solid #fff;
+}
+
+.qa:last-child{
+    border-bottom: none;
+}
+
+.qa svg {
+    font-size: 1.3rem;
+    font-weight: 400;
+    transition: .3s ease;
+}
+
+.qa.active svg {
+    transform: rotate(45deg);
+}
+
+.qa.active .answer {
+    display: block;
+    height: max-content;
+}
+
+.qa .question,
+.qa .icon {
+    padding: .8rem .5rem;
+}
+
+.qa .question,
+.qa .answer {
+    font-size: 1.1rem;
+}
+
+.qa .answer {
+    display: none;
+    height: 0;
+    transition: .3s ease;
+    padding: 0 .5rem .8rem .5rem;
+}
+
+.qa .question {
+    font-weight: 700;
+}
