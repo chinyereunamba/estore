@@ -24,7 +24,7 @@ class AllUsersViewSet(ReadOnlyModelViewSet):
     pagination_class = LargeResultsSetPagination
 
 
-users = AllUsersViewSet.as_view({"get": "list"})
+
 
 
 class GoogleLogin(SocialLoginView):

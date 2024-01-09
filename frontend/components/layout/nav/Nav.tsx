@@ -19,21 +19,25 @@ function Nav() {
   const [show, setShow] = useState<boolean>(false);
   const [categoryActive, setCategoryActive] = useState<boolean>(false);
   const [supportActive, setSupportActive] = useState<boolean>(false);
+
   return (
-    <nav>
+    <nav style={{ background: "#adc" }}>
       <div
         className={`flex items-center m-auto justify-between lg:px-0 px-5 py-3 ${style.nav}`}
       >
         <Link className="logo" href={"/"}>
           <Logo />
         </Link>
-        <div className={`${style.nav_links} ${!show && style.active}`}>
+        <div className={`${style.nav_links} ${show && style.active}`}>
           <ul className="flex gap-5 text-lg items-center">
             <li
               className={`${style.category} ${categoryActive && style.active}`}
-              
             >
-              <Link href={"/"} onClick={()=>setCategoryActive(!categoryActive)} className="flex gap-2 items-center">
+              <Link
+                href={"/"}
+                onClick={() => setCategoryActive(!categoryActive)}
+                className="flex gap-2 items-center"
+              >
                 Categories <FaAngleDown />
               </Link>
               <ol className={`${style.category_menu} flex flex-col gap-5`}>
@@ -48,8 +52,12 @@ function Nav() {
                 </li>
               </ol>
             </li>
-            <li className={`${style.support} ${supportActive && style.active}`} >
-              <Link onClick={()=>setSupportActive(!supportActive)} href={"/"} className="flex gap-2 items-center">
+            <li className={`${style.support} ${supportActive && style.active}`}>
+              <Link
+                onClick={() => setSupportActive(!supportActive)}
+                href={"/"}
+                className="flex gap-2 items-center"
+              >
                 Support <FaAngleDown />
               </Link>
               <ol className={`${style.support_menu} flex flex-col gap-5`}>
@@ -75,10 +83,10 @@ function Nav() {
               </>
             ) : (
               <>
-                <span className={`text-2xl ${style.cart}`}>
+                <Link href={"/cart"} className={`text-2xl ${style.cart}`}>
                   <span>3</span>
                   <BiCart />
-                </span>
+                </Link>
                 <li className="font-bold">{user?.user?.first_name}</li>
                 <button onClick={() => signOut()}>Logout</button>
               </>

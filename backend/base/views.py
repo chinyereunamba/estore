@@ -8,7 +8,9 @@ from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.decorators import action
-from rest_framework import status
+from rest_framework import status, generics
+
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 
@@ -17,6 +19,8 @@ class ProductsView(ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
     permission_classes = [AllowAny]
+    filterset_fields = ["category", "brand"]
+    filter_backends = [DjangoFilterBackend]
 
     @action(
         detail=True,
@@ -72,8 +76,10 @@ class ProductImageViewSet(ModelViewSet):
         return Response(serializer.data)
 
 
-products = ProductsView.as_view({"get": "list"})
-products = ProductsView.as_view({"post": "create"})
+class ProductList(generics.ListAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+    filterset_fields = ["category"]
 
 
 class CategoryView(ModelViewSet):
@@ -100,6 +106,8 @@ class OrderView(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
     permission_classes = [IsAuthenticated]
+    filterset_fields = ["products"]
+    filter_backends = [DjangoFilterBackend]
 
 
 class OrderItemView(ModelViewSet):

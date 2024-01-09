@@ -1,0 +1,6 @@
+.checkout_product .img img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    height: 100%;
+    object-fit: contain;
+}
