@@ -154,13 +154,14 @@ def order_pre_save(sender, instance, **kwargs):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, on_delete=models.CASCADE, blank=True, null=True)
+    user = models.ForeignKey(USER, on_delete=models.CASCADE, null=False, blank=False, default=1)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.PositiveIntegerField()
 
     def __str__(self):
         return (
-            f"{self.quantity} x {self.product.name} in Order #{self.order.order_number}"
+            f"{self.quantity} x {self.product.name}"
         )
 
 

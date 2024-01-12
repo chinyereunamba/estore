@@ -6,16 +6,16 @@ import { FaList } from "react-icons/fa6";
 import { FaThLarge } from "react-icons/fa";
 import ProductCardList from "./ProductCardList";
 import { useProductContext } from "@/store/productContext";
+import { useUserContext } from "@/store/context";
 import GridCardSkeleton from "../utils/GridCardSkeleton";
 import ListCardSkeleton from "../utils/ListCardSkeleton";
+import { AddToCartProps, addToCart } from "@/model/fnc";
 
 export default function Products() {
   const [grid, setGrid] = useState<boolean>(true);
   const { products } = useProductContext();
   const { isLoading } = useProductContext();
-  products?.map(item => {
-    console.log(item.image)
-  })
+  const { user } = useUserContext();
 
   return (
     <div className={style.products}>
@@ -64,6 +64,13 @@ export default function Products() {
               price={Number(product.price)}
               img={!product.image ? "/computing.jpg" : product.image}
               productId={product.product_id}
+              add={async () =>
+                await addToCart({
+                  user: user!.user.pk,
+                  product: product.id,
+                  quantity: 1,
+                })
+              }
             />
           ) : (
             <ProductCardList

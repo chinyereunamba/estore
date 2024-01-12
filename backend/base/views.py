@@ -105,7 +105,7 @@ brand = BrandView.as_view({"post": "create"})
 class OrderView(ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     filterset_fields = ["products"]
     filter_backends = [DjangoFilterBackend]
 
@@ -114,6 +114,8 @@ class OrderItemView(ModelViewSet):
     queryset = OrderItem.objects.all()
     serializer_class = OrderItemSerializer
     permission_classes = [AllowAny]
+    filterset_fields= ["user"]
+    filter_backends = [DjangoFilterBackend]
 
 
 class ReviewView(ModelViewSet):

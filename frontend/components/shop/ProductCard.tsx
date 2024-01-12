@@ -1,15 +1,19 @@
+"use client";
 import { FaStar } from "react-icons/fa6";
 import style from "./shop.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { AddToCartProps, addToCart } from "@/model/fnc";
+import { useUserContext } from "@/store/context";
 
 interface ProductCard {
-  id: number,
+  id: number;
   productTitle: string;
   img: string;
   price: number;
   noOfStars?: number;
-  productId: string
+  productId: string;
+  add: ()=>{}
 }
 
 export default function ProductCard({
@@ -18,17 +22,21 @@ export default function ProductCard({
   img,
   price,
   noOfStars,
-  productId
+  productId,
+  add
 }: ProductCard) {
   const startFnc = noOfStars;
   const productName = productTitle.substring(0, 45) + "...";
-  const slugify = productTitle
+  const slugify =
+    productTitle
       .toLowerCase()
       .trim()
       .replace(/[^\w\s-]/g, "")
       .replace(/[\s_-]+/g, "-")
-    .replace(/^-+|-+$/g, "") + "-" + productId.substring(4, 12).toLowerCase();
-   
+      .replace(/^-+|-+$/g, "") +
+    "-" +
+    productId.substring(4, 12).toLowerCase();
+
 
   return (
     <div className={style.product_card}>
@@ -49,7 +57,7 @@ export default function ProductCard({
         </div>
       </div>
       <div className={style.footer}>
-        <button>Add to Cart</button>
+        <button onClick={async() => {add()}}>Add to Cart</button>
       </div>
     </div>
   );

@@ -94,7 +94,8 @@ class ProductSerializer(serializers.ModelSerializer):
 class OrderItemSerializer(ModelSerializer):
     class Meta:
         model = OrderItem
-        fields = "__all__"
+        fields = ['id', 'user', 'order', 'quantity', 'product']
+        # depth = 1
 
 
 class OrderSerializer(ModelSerializer):

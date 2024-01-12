@@ -18,9 +18,10 @@ class OrderAdmin(admin.ModelAdmin):
     search_fields = ["order_number"]
     readonly_fields = ["order_number"]
 
-
 class OrderItemAdmin(admin.ModelAdmin):
-    list_display = ["order", "product"]
+    list_display = ['user', 'product', 'quantity']
+    list_filter = ['user']
+    readonly_fields = []
 
 
 class ProductImageAdmin(admin.ModelAdmin):
@@ -37,4 +38,5 @@ admin.site.register(Brand)
 admin.site.register(Product, ProductAdmin)
 admin.site.register(ProductImage, ProductImageAdmin)
 admin.site.register(Order, OrderAdmin)
+admin.site.register(OrderItem, OrderItemAdmin)
 admin.site.register(Review, ReviewAdmin)
