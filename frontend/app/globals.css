@@ -16,7 +16,8 @@
 }
 
 body {
-    background: var(--background);
+    /* background: var(--background); */
+    background: #fff;
     font-family: 'Lato', sans-serif;
     transition: .5s ease-in;
 }

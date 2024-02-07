@@ -24,13 +24,11 @@ export default async function RootLayout({
     <html lang="en">
       <SessionProvider session={session}>
         <UserContextProvider>
-          <ProductContextProvider>
           <body className={lato.className}>
             <Nav />
             {children}
             <Footer />
           </body>
-          </ProductContextProvider>
         </UserContextProvider>
       </SessionProvider>
     </html>

@@ -42,7 +42,7 @@ type OrderProps = {
 }
 
 const getOrderItemsList = async (): Promise<Order[]> => {
-    const res = await fetch(process.env.NEXTAUTH_BACKEND_URL + "v1/order", {
+    const res = await fetch(process.env.NEXT_PUBLIC_BACKEND_URL + "v1/order", {
         method: 'GET',
 
         headers: {

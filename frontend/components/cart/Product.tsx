@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./cart.module.css";
 import Image from "next/image";
 import { BiTrash } from "react-icons/bi";
@@ -9,17 +9,10 @@ import { deleteOrderItem, getProductById } from "@/model/fnc";
 type ProductProps = {
   id: number;
   quantity: number;
-  product_id: number;
+  product: () => Promise<Products>;
 };
 
-export default async function Product({
-  id,
-  quantity,
-  product_id,
-}: ProductProps) {
-  const [product] = await Promise.all([getProductById(product_id)]);
-  console.log(product)
-
+export default async function Product({ id, quantity, product }: ProductProps) {
   const price = product.price;
   const product_name = product.name;
   const total = Number(price) * quantity;
@@ -35,8 +28,8 @@ export default async function Product({
         <p>Quantity: {quantity}</p>
         <BiTrash
           className="text-2xl hover:cursor-pointer"
-          onClick={async() => {
-            console.log('Clicked delete')
+          onClick={async () => {
+            console.log("Clicked delete");
             await Promise.resolve(deleteOrderItem(id));
           }}
         />

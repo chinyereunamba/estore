@@ -1,11 +1,17 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import SectionContainer from "../utils/SectionContainer";
 import style from "./cart.module.css";
 import Product from "./Product";
 import { getOrderItemsList, getProductById } from "@/model/fnc";
 
-export default async function CartHome() {
-  const cartItems = await getOrderItemsList();
+export default function CartHome() {
+  const [cart, setCart] = useState<Promise<Order[]>>()
+  useEffect(() => {
+    const cartItems = getOrderItemsList();
+    console.log(cartItems)
+    setCart(cartItems)
+  }, [cart])
 
   return (
     <SectionContainer>
@@ -13,11 +19,13 @@ export default async function CartHome() {
         <div className="lg:w-2/3 ">
           <h1 className="mb-5">Cart</h1>
           <div className="py-2 flex flex-col gap-4">
-            {cartItems.map((item, index) => (
+            {cart.map((item, index) => (
               <Product
                 key={index}
                 id={item.id}
-                product_id={item.product}
+                product={async () => {
+                  await Promise.resolve(getProductById(item.product));
+                }}
                 quantity={item.quantity}
               />
             ))}
